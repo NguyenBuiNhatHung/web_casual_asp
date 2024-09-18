@@ -1,0 +1,139 @@
+﻿@model DoAn_63134144.Models.USER
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_layoutControl.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>USER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ten_lot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten_lot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sdt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sdt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_chi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dia_chi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngsinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngsinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Luong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Luong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kind)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kind)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gtinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gtinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Point)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Point)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordHash)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stk)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bank)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bank)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_user }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

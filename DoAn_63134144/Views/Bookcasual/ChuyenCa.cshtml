@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "ChuyenCa";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+
+<div class="chuyenca">
+    <div class="row justify-content-center mt-2 mt-md-5">
+        <div class="col-md-6">
+            <div class="border p-4">
+                @using (Html.BeginForm("ConFirmChuyenCa", "Bookcasual", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label for="Id_job"></label>
+                        <input type="text" class="form-control" id="Id_job" name="Id_job" value="@ViewBag.Id_job" required hidden>
+                    </div>
+                    <div class="form-group">
+                        <label for="Id_change">Chuyển cho ID</label>
+                        <input type="text" class="form-control" id="Id_change" name="Id_change" placeholder="Nếu không nhập thì chuyển lên trang nhượng ca">
+                    </div>
+                    <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

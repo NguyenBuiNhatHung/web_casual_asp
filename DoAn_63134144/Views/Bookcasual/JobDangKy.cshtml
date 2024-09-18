@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "JobDangKy";
+    Layout = "~/Views/Shared/_layoutUser.cshtml";
+}
+
+@model IEnumerable<DoAn_63134144.Models.JOB>
+
+<style>
+    .link-black {
+        color: black;
+    }
+
+    .link-black:hover {
+        color: blue;
+    }
+    .table {
+        width: 100%;
+        table-layout: fixed;
+        border: 1px solid black;
+    }
+
+    @@media only screen and (max-width:767px) {
+        .table th,
+        .table td {
+            font-size: 10px;
+            border: 1px solid red;
+            padding: 0px;
+            text-align: center;
+        }
+    }
+
+    @@media only screen and (min-width:768px) {
+        .table th,
+        .table td {
+            border: 1px solid red;
+            padding: 0px;
+            text-align: center;
+        }
+    }
+</style>
+<h3>DANH SÁCH CÁC CÔNG VIỆC ĐANG ĐĂNG KÝ, CẦN ĐƯỢC HR XÁC NHẬN ĐỂ ĐI LÀM</h3>
+<table class="table">
+    <tr>
+        <td class="col-2">Nơi làm việc</td>
+        <td class="col-1">Ngày</td>
+        <td class="col-1">thời gian</td>
+        <td class="col-1">Lương (/h)</td>
+        <td class="col-1">Hỗ trợ</td>
+        <td class="col-1">Vị trí</td>
+        <td class="col-2">Lưu ý</td>
+        <td class="col-1">Hủy đăng ký</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        string formattedPrice = (item.Price / 1000).ToString() + "k";
+        string formattedSupport = (item.Support / 1000).ToString() + "k";
+        string sex = "";
+        DateTime? Nsinh = item.USER.Ngsinh;
+        int tuoi;
+        TimeSpan? timeSpan = DateTime.Now - Nsinh;
+        tuoi = (int)(timeSpan.Value.TotalDays / 365.25);
+        if (item.USER.Gtinh == "0") { sex = "Nam"; }
+        else { sex = "Nữ"; }
+        <tr>
+            <td>@item.HR.Short_name</td>
+            <td>@(((DateTime)item.Ngay).ToString("dd/MM"))</td>
+            <td>thời gian</td>
+            <td>@formattedPrice</td>
+            <td>@formattedSupport</td>
+            <td>@item.Location</td>
+            <td>@item.Note</td>
+            <td>@Html.ActionLink("Xóa đăng ký", "DeleteJob", new { id = item.Id_job }, new { @class = "link-black" })</td>
+        </tr>
+    }
+</table>
+

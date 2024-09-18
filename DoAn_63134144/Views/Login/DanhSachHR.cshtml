@@ -1,0 +1,107 @@
+﻿@model IEnumerable<DoAn_63134144.Models.HR>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_layoutControl.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenLot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ten_KS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Star)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sdt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diachi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Thanhtoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kind)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.images)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Short_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenLot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten_KS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Star)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sdt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diachi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thanhtoan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kind)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.images)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Short_name)
+            </td>
+            <td>
+                @Convert.ToString(item.PasswordHash)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditHR", new { id = item.Id_hr }) |
+                @Html.ActionLink("Details", "DetailsHR", new { id = item.Id_hr }) |
+                @Html.ActionLink("Change pass", "ChangePassHR", new { id = item.Id_hr })
+            </td>
+        </tr>
+    }
+
+</table>

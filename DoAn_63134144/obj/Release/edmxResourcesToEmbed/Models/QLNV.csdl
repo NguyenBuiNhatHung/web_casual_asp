@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DOANQLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ho" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Ten_lot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Ten" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Sdt" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Dia_chi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ngsinh" Type="DateTime" Precision="0" />
+    <Property Name="Luong" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Kind" Type="Int32" />
+    <NavigationProperty Name="JOBS" Relationship="DOANQLModel.fk_JOBS_USER" FromRole="USER" ToRole="JOB" />
+    <Property Name="Gtinh" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Point" Type="Int32" />
+    <Property Name="Bad" Type="Int16" />
+    <Property Name="PasswordHash" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Stk" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Bank" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="DOANQLEntities14" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="USERS" EntityType="Self.USER" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DOANQLModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DOANQLModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="sysdiagrams" EntityType="DOANQLModel.sysdiagram" />
+    <EntitySet Name="HRS" EntityType="DOANQLModel.HR" />
+    <EntitySet Name="BOOKS" EntityType="DOANQLModel.BOOK" />
+    <EntitySet Name="JOBS" EntityType="DOANQLModel.JOB" />
+    <AssociationSet Name="fk_JOBS_USER" Association="DOANQLModel.fk_JOBS_USER">
+      <End Role="USER" EntitySet="USERS" />
+      <End Role="JOB" EntitySet="JOBS" />
+    </AssociationSet>
+    <FunctionImport Name="SearchJobsByDate" ReturnType="Collection(DOANQLModel.SearchJobsByDate_Result)">
+      <Parameter Name="Ngay" Mode="In" Type="String" />
+    </FunctionImport>
+    <AssociationSet Name="fk_JOBS_HRS" Association="DOANQLModel.fk_JOBS_HRS">
+      <End Role="HR" EntitySet="HRS" />
+      <End Role="JOB" EntitySet="JOBS" />
+    </AssociationSet>
+    <AssociationSet Name="fk_BOOKS_HRS" Association="DOANQLModel.fk_BOOKS_HRS">
+      <End Role="HR" EntitySet="HRS" />
+      <End Role="BOOK" EntitySet="BOOKS" />
+    </AssociationSet>
+    <EntitySet Name="ADMINS" EntityType="DOANQLModel.ADMIN" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="HR">
+    <Key>
+      <PropertyRef Name="Id_hr" />
+    </Key>
+    <Property Name="Id_hr" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Ho" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TenLot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Ten" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Ten_KS" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="Star" Type="Int32" />
+    <Property Name="Sdt" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Thanhtoan" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Kind" Type="Int32" />
+    <Property Name="images" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="JOBS" Relationship="DOANQLModel.fk_JOBS_HRS" FromRole="HR" ToRole="JOB" />
+    <NavigationProperty Name="BOOKS" Relationship="DOANQLModel.fk_BOOKS_HRS" FromRole="HR" ToRole="BOOK" />
+    <Property Name="Short_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordHash" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="BOOK">
+    <Key>
+      <PropertyRef Name="Id_book" />
+    </Key>
+    <Property Name="Id_book" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Id_hr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Ngay" Type="DateTime" Precision="0" />
+    <Property Name="Tstart" Type="Time" Precision="7" />
+    <Property Name="Tend" Type="Time" Precision="7" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Support" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Location" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HR" Relationship="DOANQLModel.fk_BOOKS_HRS" FromRole="BOOK" ToRole="HR" />
+    <Property Name="sl" Type="Int32" />
+    <Property Name="need" Type="Int32" />
+  </EntityType>
+  <EntityType Name="JOB">
+    <Key>
+      <PropertyRef Name="Id_job" />
+    </Key>
+    <Property Name="Id_job" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="Id_hr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Ngay" Type="DateTime" Precision="0" />
+    <Property Name="Tstart" Type="Time" Precision="7" />
+    <Property Name="Tend" Type="Time" Precision="7" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Support" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Sta" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Pay" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Id_user" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Id_change" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Status_change" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Location" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="USER" Relationship="DOANQLModel.fk_JOBS_USER" FromRole="JOB" ToRole="USER" />
+    <NavigationProperty Name="HR" Relationship="DOANQLModel.fk_JOBS_HRS" FromRole="JOB" ToRole="HR" />
+  </EntityType>
+  <Association Name="fk_JOBS_USER">
+    <End Type="DOANQLModel.USER" Role="USER" Multiplicity="0..1" />
+    <End Type="DOANQLModel.JOB" Role="JOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="JOB">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SearchJobsByDate_Result">
+    <Property Type="String" Name="Id_job" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="Id_hr" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="Ngay" Nullable="true" />
+    <Property Type="Time" Name="Tstart" Nullable="true" />
+    <Property Type="Time" Name="Tend" Nullable="true" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Support" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Sta" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="Pay" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="Id_user" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Note" Nullable="true" />
+    <Property Type="String" Name="Id_change" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Status_change" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="Location" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <Association Name="fk_JOBS_HRS">
+    <End Type="DOANQLModel.HR" Role="HR" Multiplicity="0..1" />
+    <End Type="DOANQLModel.JOB" Role="JOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HR">
+        <PropertyRef Name="Id_hr" />
+      </Principal>
+      <Dependent Role="JOB">
+        <PropertyRef Name="Id_hr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_BOOKS_HRS">
+    <End Type="DOANQLModel.HR" Role="HR" Multiplicity="0..1" />
+    <End Type="DOANQLModel.BOOK" Role="BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HR">
+        <PropertyRef Name="Id_hr" />
+      </Principal>
+      <Dependent Role="BOOK">
+        <PropertyRef Name="Id_hr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="name" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>

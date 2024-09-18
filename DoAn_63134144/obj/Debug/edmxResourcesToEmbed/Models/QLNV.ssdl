@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DOANQLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ADMINS">
+    <Key>
+      <PropertyRef Name="name" />
+    </Key>
+    <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="BOOKS">
+    <Key>
+      <PropertyRef Name="Id_book" />
+    </Key>
+    <Property Name="Id_book" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Id_hr" Type="varchar" MaxLength="10" />
+    <Property Name="Ngay" Type="date" />
+    <Property Name="Tstart" Type="time" Precision="7" />
+    <Property Name="Tend" Type="time" Precision="7" />
+    <Property Name="Price" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Support" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Location" Type="varchar" MaxLength="10" />
+    <Property Name="Note" Type="nvarchar" MaxLength="100" />
+    <Property Name="sl" Type="int" />
+    <Property Name="need" Type="int" />
+  </EntityType>
+  <EntityType Name="HRS">
+    <Key>
+      <PropertyRef Name="Id_hr" />
+    </Key>
+    <Property Name="Id_hr" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Ho" Type="nvarchar" MaxLength="10" />
+    <Property Name="TenLot" Type="nvarchar" MaxLength="30" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="10" />
+    <Property Name="Ten_KS" Type="nvarchar" MaxLength="60" />
+    <Property Name="Star" Type="int" />
+    <Property Name="Sdt" Type="varchar" MaxLength="12" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Thanhtoan" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Kind" Type="int" />
+    <Property Name="images" Type="varchar" MaxLength="50" />
+    <Property Name="Short_name" Type="nvarchar" MaxLength="30" />
+    <Property Name="PasswordHash" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="JOBS">
+    <Key>
+      <PropertyRef Name="Id_job" />
+    </Key>
+    <Property Name="Id_job" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Id_hr" Type="varchar" MaxLength="10" />
+    <Property Name="Ngay" Type="date" />
+    <Property Name="Tstart" Type="time" Precision="7" />
+    <Property Name="Tend" Type="time" Precision="7" />
+    <Property Name="Price" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Support" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Sta" Type="varchar" MaxLength="1" />
+    <Property Name="Pay" Type="varchar" MaxLength="1" />
+    <Property Name="Id_user" Type="varchar" MaxLength="10" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="Id_change" Type="varchar" MaxLength="10" />
+    <Property Name="Status_change" Type="varchar" MaxLength="1" />
+    <Property Name="Location" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Ho" Type="nvarchar" MaxLength="10" />
+    <Property Name="Ten_lot" Type="nvarchar" MaxLength="30" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="10" />
+    <Property Name="Sdt" Type="varchar" MaxLength="12" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Dia_chi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ngsinh" Type="date" />
+    <Property Name="Luong" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Kind" Type="int" />
+    <Property Name="Gtinh" Type="varchar" MaxLength="1" />
+    <Property Name="Point" Type="int" />
+    <Property Name="Bad" Type="smallint" />
+    <Property Name="PasswordHash" Type="varbinary(max)" />
+    <Property Name="Stk" Type="varchar" MaxLength="20" />
+    <Property Name="Bank" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <Association Name="fk_BOOKS_HRS">
+    <End Role="HRS" Type="Self.HRS" Multiplicity="0..1" />
+    <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HRS">
+        <PropertyRef Name="Id_hr" />
+      </Principal>
+      <Dependent Role="BOOKS">
+        <PropertyRef Name="Id_hr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_JOBS_HRS">
+    <End Role="HRS" Type="Self.HRS" Multiplicity="0..1" />
+    <End Role="JOBS" Type="Self.JOBS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HRS">
+        <PropertyRef Name="Id_hr" />
+      </Principal>
+      <Dependent Role="JOBS">
+        <PropertyRef Name="Id_hr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_JOBS_USER">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="JOBS" Type="Self.JOBS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="JOBS">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="SearchJobsByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ngay" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="DOANQLModelStoreContainer">
+    <EntitySet Name="ADMINS" EntityType="Self.ADMINS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BOOKS" EntityType="Self.BOOKS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HRS" EntityType="Self.HRS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JOBS" EntityType="Self.JOBS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_BOOKS_HRS" Association="Self.fk_BOOKS_HRS">
+      <End Role="HRS" EntitySet="HRS" />
+      <End Role="BOOKS" EntitySet="BOOKS" />
+    </AssociationSet>
+    <AssociationSet Name="fk_JOBS_HRS" Association="Self.fk_JOBS_HRS">
+      <End Role="HRS" EntitySet="HRS" />
+      <End Role="JOBS" EntitySet="JOBS" />
+    </AssociationSet>
+    <AssociationSet Name="fk_JOBS_USER" Association="Self.fk_JOBS_USER">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="JOBS" EntitySet="JOBS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

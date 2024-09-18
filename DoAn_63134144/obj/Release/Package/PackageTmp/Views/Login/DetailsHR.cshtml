@@ -1,0 +1,123 @@
+﻿@model DoAn_63134144.Models.HR
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_layoutControl.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HR</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenLot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ten_KS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten_KS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Star)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Star)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sdt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sdt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diachi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diachi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Thanhtoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thanhtoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kind)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kind)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.images)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.images)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Short_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Short_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordHash)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_hr }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

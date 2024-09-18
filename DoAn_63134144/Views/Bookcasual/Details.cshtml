@@ -1,0 +1,83 @@
+﻿@model DoAn_63134144.Models.BOOK
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BOOK</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_hr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_hr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tstart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tstart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tend)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Support)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Support)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_book }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

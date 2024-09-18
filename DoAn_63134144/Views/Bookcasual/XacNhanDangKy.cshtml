@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "XacNhanDangKy";
+    Layout = "~/Views/Shared/_layoutHR.cshtml";
+}
+@using System.Globalization
+@model IEnumerable<DoAn_63134144.Models.JOB>
+
+<style>
+    .link-black {
+       color: black;
+    }
+
+    .link-black:hover {
+        color: blue;
+    }
+    .table{
+        width:100%;
+        table-layout:fixed;
+        border:1px solid black;
+    }
+
+    @@media only screen and (max-width:767px){
+        .table th,
+        .table td {
+            font-size: 10px;
+            border: 1px solid red;
+            padding: 0px;
+            text-align: center;
+        }
+    }
+    @@media only screen and (min-width:768px){
+        .table th,
+        .table td {
+            border: 1px solid red;
+            padding: 0px;
+            text-align: center;
+        }
+    }
+</style>
+
+@ViewBag.SuccessMessage
+@ViewBag.ErrorMessage
+<h3>DANH SÁCH CÁC CÔNG NHẬT ĐĂNG KÝ CẦN ĐƯỢC XÁC NHẬN</h3>
+<table class="table">
+    <tr>
+        <td class="col-1">Ngày</td>
+        <td class="col-2">thời gian</td>
+        <td class="col-1">Lương (/h)</td>
+        <td class="col-1">Hỗ trợ</td>
+        <td class="col-3">Họ tên</td>
+        <td class="col-1">Giới tính</td>
+        <td class="col-1">Tuổi</td>
+        <td class="col-1">Vị trí</td>
+        <td class="col-1">Xác nhận</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        string formattedPrice = (item.Price / 1000).ToString() + "k";
+        string formattedSupport = (item.Support / 1000).ToString() + "k";
+        string sex = "";
+        DateTime? Nsinh = item.USER.Ngsinh;
+        int tuoi;
+        TimeSpan? timeSpan = DateTime.Now - Nsinh;
+        tuoi = (int)(timeSpan.Value.TotalDays / 365.25);
+        if (item.USER.Gtinh == "0") { sex = "Nam"; }
+        else { sex = "Nữ"; }
+        <tr>
+            <td>@(((DateTime)item.Ngay).ToString("dd/MM"))</td>
+            <td>thời gian</td>
+            <td>@formattedPrice</td>
+            <td>@formattedSupport</td>
+            <td>@item.USER.Ho @item.USER.Ten_lot @item.USER.Ten_lot</td>
+            <td>@sex</td>
+            <td>@tuoi</td>
+            <td>@item.Location</td>
+            <td>@Html.ActionLink("Xác nhận", "XacNhan", new { id = item.Id_job }, new { @class = "link-black" })</td>
+        </tr>
+    }
+</table>

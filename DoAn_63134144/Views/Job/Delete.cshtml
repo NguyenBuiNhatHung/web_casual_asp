@@ -1,0 +1,121 @@
+﻿@model DoAn_63134144.Models.JOB
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>JOB</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_hr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_hr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tstart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tstart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tend)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Support)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Support)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_change)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_change)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status_change)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status_change)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

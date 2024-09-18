@@ -1,0 +1,113 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_layoutHR.cshtml";
+}
+
+@model IEnumerable<DoAn_63134144.Models.JOB>
+
+
+<style>
+    .link-black {
+        color: black;
+    }
+
+        .link-black:hover {
+            color: blue;
+        }
+
+    .table {
+        width: 100%;
+        table-layout: fixed;
+        border: 1px solid black;
+    }
+
+    @@media only screen and (max-width:767px) {
+        .table th,
+        .table td {
+            font-size: 10px;
+            border: 1px solid red;
+            padding: 0px;
+            text-align: center;
+        }
+    }
+
+    @@media only screen and (min-width:768px) {
+        .table th,
+        .table td {
+            border: 1px solid red;
+            padding: 0px;
+            text-align: center;
+        }
+    }
+</style>
+<h3>CHƯA THANH TOÁN</h3>
+<div class="find">
+    <div class="row justify-content-center mt-2 mt-md-5">
+        <div class="col-md-6">
+            <div class="border p-4">
+                @using (Html.BeginForm("Luong", "Bookcasual", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label for="thang">Tháng:</label>
+                        <select class="form-control" id="thang" name="thang" required>
+                            <option value="">Chọn tháng</option>
+                            <option value="1">Tháng 1</option>
+                            <option value="2">Tháng 2</option>
+                            <option value="3">Tháng 3</option>
+                            <option value="4">Tháng 4</option>
+                            <option value="5">Tháng 5</option>
+                            <option value="6">Tháng 6</option>
+                            <option value="7">Tháng 7</option>
+                            <option value="8">Tháng 8</option>
+                            <option value="9">Tháng 9</option>
+                            <option value="10">Tháng 10</option>
+                            <option value="11">Tháng 11</option>
+                            <option value="12">Tháng 12</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="submitButton" class="btn btn-primary">Lọc</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <td class="col-1">Ngày</td>
+        <td class="col-2">Họ tên</td>
+        <td class="col-1">thời gian</td>
+        <td class="col-1">Lương (/h)</td>
+        <td class="col-1">Hỗ trợ</td>
+        <td class="col-1">Tổng</td>
+        <td class="col-1">Vị trí</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        string formattedPrice = (item.Price / 1000).ToString() + "k";
+        string formattedSupport = (item.Support / 1000).ToString() + "k";
+        string formattedName = item.USER.Ho + " " + item.USER.Ten_lot + " " + item.USER.Ten;
+        TimeSpan? itemTendNullable = item.Tend;
+        TimeSpan itemTend = itemTendNullable.HasValue ? itemTendNullable.Value : TimeSpan.Zero;
+
+        TimeSpan? itemTstartNullable = item.Tstart;
+        TimeSpan itemTstart = itemTstartNullable.HasValue ? itemTstartNullable.Value : TimeSpan.Zero;
+
+        TimeSpan timeDif = itemTend - itemTstart;
+        double hours = timeDif.Hours;
+        double minutes = timeDif.Minutes;
+        double time = hours + minutes / 60;
+        double price = (double)item.Price;
+        double tong = (double)(price * time);
+        string formattedTong = (tong / 1000).ToString() + "k";
+        <tr>
+            <td>@(((DateTime)item.Ngay).ToString("dd/MM"))</td>
+            <td>@formattedName</td>
+            <td>@item.Tstart - @item.Tend</td>
+            <td>@formattedPrice</td>
+            <td>@formattedSupport</td>
+            <td>@formattedTong</td>
+            <td>@item.Location</td>
+        </tr>
+    }
+</table>
+

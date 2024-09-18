@@ -1,0 +1,174 @@
+﻿
+@{
+    ViewBag.Title = "trangchu";
+    Layout = "~/Views/Shared/_layoutControl.cshtml";
+    int count = Model.Count();
+    Styles.Render("~Content/trangchu.css");
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@model List<DoAn_63134144.Models.HR>
+<style>
+    @@media only screen and (max-width:767px) {
+        .item-hotel {
+            height: 190px;
+        }
+
+        .item-info {
+            height: 400px;
+        }
+
+        .item-star-item {
+            width: 25%;
+            height: 20%;
+            float: right;
+            color: rgb(237 245 83);
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        .item-name-item {
+            position: absolute;
+            top: 75%;
+            color: yellow;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .owl-item-info {
+            position: absolute;
+            margin-top: 20%;
+            width: 50%;
+            height: 70%;
+            background-color: rgba(8,8, 8,0.6);
+            text-align: center;
+            color: yellow;
+            font-size: 1.3rem;
+            border-radius: 0 5% 5% 0;
+        }
+    }
+
+    @@media only screen and (min-width:768px) {
+        .item-hotel {
+            height: 250px;
+            border-radius: 3px;
+        }
+
+        .item-info {
+            height: 600px;
+        }
+
+        .item-star-item {
+            width: 25%;
+            height: 20%;
+            float: right;
+            color: rgb(237 245 83);
+            font-size: 1.3rem;
+            display: inline-block;
+        }
+
+        .item-name-item {
+            position: absolute;
+            top: 75%;
+            color: yellow;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .owl-item-info {
+            position: absolute;
+            margin-top: 20%;
+            width: 50%;
+            height: 70%;
+            background-color: rgba(8,8, 8,0.6);
+            text-align: center;
+            color: yellow;
+            font-size: 1.3rem;
+            border-radius: 0 5% 5% 0;
+        }
+    }
+</style>
+<div class="owl-carousel owl-theme owl1">
+    @foreach (var item in Model)
+    {
+        <div class="item item-hotel" style="background-image:url('/images/@item.images');background-repeat:no-repeat;background-size:cover;background-position:bottom;">
+            <div class="item-star-item">
+                @item.Star
+                <i class='bx bxs-star'></i>
+            </div>
+            <span class="item-name-item">@item.Short_name</span>
+        </div>
+    }
+</div>
+
+<div class="owl-carousel owl-theme owl2">
+    @foreach (var item in Model)
+    {
+        <div class="item item-info" style="background-image:url('/images/@item.images');background-repeat:no-repeat;background-size:cover;background-position:bottom;">
+            <div class="owl-item-info">
+                <h4>@item.Ten_KS</h4>
+                <h5>
+                    Đánh giá:
+                    @{
+                        for (int j = 0; j < item.Star; j++)
+                        {
+                            <i class='bx bxs-star'></i>
+                        }
+                        for (int j = 0; j < 5 - item.Star; j++)
+                        {
+                            <i class='bx bx-star'></i>
+                        }
+                    }
+                </h5>
+                <h5>Địa chỉ:@item.Diachi</h5>
+                <h5>SĐT: @item.Sdt</h5>
+                <h5>Tên HR: @item.Ho @item.TenLot @item.Ten</h5>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script type="text/javascript">
+        $('.owl1').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: false,
+            autoplay:false,
+            autoplayTimeout: 1500,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 3
+                },
+                768: {
+                    items: 4
+                },
+                1000: {
+                    items: 5
+                },
+                1200: {
+                    items: 7
+                },
+            }
+        });
+        $('.owl2').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1,
+                }
+            }
+        });
+</script>

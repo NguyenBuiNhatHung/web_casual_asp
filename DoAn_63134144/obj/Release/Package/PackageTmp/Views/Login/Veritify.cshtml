@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Veritify";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+<h2 class="text-center mt-5">Đăng ký tài khoản User</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="code">Mã xác nhận:</label>
+        <input type="text" class="form-control" id="code" name="code" placeholder="Nhập mã xác nhận">
+    </div>
+
+    <a href="/login/Veritify" class="btn btn-secondary">Send Code</a>
+    <button type="submit" class="btn btn-primary">Submit</button>@ViewBag.test
+</form>
+

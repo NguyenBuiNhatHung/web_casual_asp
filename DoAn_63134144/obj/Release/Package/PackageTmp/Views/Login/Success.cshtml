@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+
+@model DoAn_63134144.Models.USER
+
+<h2>Nhập các thông tin còn lại</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div >
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Thông tin người dùng</h4>
+                        <hr />
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Ho, "Họ", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="Ho" name="Ho" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.Ho, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Ten_lot, "Tên lót", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="Ten_lot" name="Ten_lot" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.Ten_lot, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Ten, "Tên", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="Ten" name="Ten" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Sdt, "Số điện thoại", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="Sdt" name="Sdt" class="form-control" readonly value="@Session["sdt"]" required />
+                                @Html.ValidationMessageFor(model => model.Sdt, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Email, "Email hoặc Gmail", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="Email" name="Email" class="form-control" readonly value="@Session["email"]" />
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @*<div class="form-group row">
+            @Html.LabelFor(model => model.Dia_chi, "Địa chỉ", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+            <div class="col-md-6">
+                <input type="text" id="Dia_chi" name="Dia_chi" class="form-control" required oninput="checkFields()" />
+                @Html.ValidationMessageFor(model => model.Dia_chi, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Dia_chi, "Địa chỉ", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <select id="Thanh_pho" name="Thanh_pho" class="form-control" onchange="updateDiaChi()" required oninput="checkFields()">
+                                    <option value="">Chọn phường/Trị Trấn</option>
+                                    <option value="Lộc thọ">Lộc thọ</option>
+                                    <option value="Ngọc Hiệp">Ngọc Hiệp</option>
+                                    <option value="Phước Đồng">Phước Đồng</option>
+                                    <option value="Phước Hải">Phước Hải</option>
+                                    <option value="Phước Hòa">Phước Hòa</option>
+                                    <option value="Phước Long">Phước Long</option>
+                                    <option value="Phước Tân">Phước Tân</option>
+                                    <option value="Phước Tiến">Phước Tiến</option>
+                                    <option value="Phương Sài">Phương Sài</option>
+                                    <option value="Phương Sơn">Phương Sơn</option>
+                                    <option value="Tân Lập">Tân Lập</option>
+                                    <option value="Vạn Thạnh">Vạn Thạnh</option>
+                                    <option value="Vạn Thắng">Vạn Thắng</option>
+                                    <option value="Vĩnh Hải">Vĩnh Hải</option>
+                                    <option value="Vĩnh Hiệp">Vĩnh Hiệp</option>
+                                    <option value="Vĩnh Hòa">Vĩnh Hòa</option>
+                                    <option value="Vĩnh Lương">Vĩnh Lương</option>
+                                    <option value="Vĩnh Ngọc">Vĩnh Ngọc</option>
+                                    <option value="Vĩnh Nguyên">Vĩnh Nguyên</option>
+                                    <option value="Vĩnh Phước">Vĩnh Phước</option>
+                                    <option value="Vĩnh Phương">Vĩnh Phương</option>
+                                    <option value="Vĩnh Thái">Vĩnh Thái</option>
+                                    <option value="Vĩnh Thạnh">Vĩnh Thạnh</option>
+                                    <option value="Vĩnh Thọ">Vĩnh Thọ</option>
+                                    <option value="Vĩnh Trung">Vĩnh Trung</option>
+                                    <option value="Vĩnh Trường">Vĩnh Trường</option>
+                                    <option value="Xương Huân">Xương Huân</option>
+                                    <option value="Cam Đức">Cam Đức</option>
+                                </select>
+                                <select id="Tinh" name="Tinh" class="form-control" onchange="updateDiaChi()" required oninput="checkFields()">
+                                    <option value="">Thành Phố/Huyện</option>
+                                    <option value="Nha Trang">Nha trang</option>
+                                    <option value="Cam Lâm">Cam Lâm</option>
+                                </select>
+                                <input type="text" id="Dia_chi" name="Dia_chi" class="form-control" readonly required />
+                                @Html.ValidationMessageFor(model => model.Dia_chi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Ngsinh, "Ngày sinh", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="date" id="Ngsinh" name="Ngsinh" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.Ngsinh, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Gtinh, "Giới tính", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <select id="Gtinh" name="Gtinh" class="form-control" required onchange="checkFields()">
+                                    <option value="0">Nam</option>
+                                    <option value="1">Nữ</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Gtinh, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @*<div class="form-group row">
+                            @Html.LabelFor(model => model.Password, "Mật khẩu", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "password-input", @required = "required", @oninput = "checkFields()" } })
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" id="toggle-password">
+                                            <i class='bx bx-low-vision'></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                    </div>
+
+
+                    <!-- Các trường dữ liệu khác -->
+
+
+
+                    <div class="form-group row">
+                        <div class="col-md-6 offset-md-4">
+                            <input type="submit" value="Create" class="btn btn-primary" disabled />
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+}
+
+
+<script>
+    document.getElementById("toggle-password").addEventListener("click", function () {
+        var passwordInput = document.getElementById("password-input");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            document.getElementById("toggle-password").innerHTML = "<i class='bx bxs - low - vision'></i>";
+        } else {
+            passwordInput.type = "password";
+            document.getElementById("toggle-password").innerHTML = "<i class='bx bxs - low - vision'></i>";
+        }
+    });
+
+    function checkFields() {
+        var inputs = document.querySelectorAll('.form-control[required]');
+        var isAllFilled = true;
+
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].value === '') {
+                isAllFilled = false;
+                break;
+            }
+        }
+
+        var createButton = document.querySelector('.btn.btn-primary');
+        if (isAllFilled) {
+            createButton.disabled = false;
+        } else {
+            createButton.disabled = true;
+        }
+    }
+
+    function updateDiaChi() {
+        var thanhPho = document.getElementById("Thanh_pho").value;
+        var tinh = document.getElementById("Tinh").value;
+        var diaChi = thanhPho + ", " + tinh;
+        document.getElementById("Dia_chi").value = diaChi;
+    }
+</script>
+
+

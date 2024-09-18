@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d60ee30621614263adaef24908043b68" Name="Diagram1">
+        <EntityTypeShape EntityType="DOANQLModel.USER" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DOANQLModel.sysdiagram" Width="1.5" PointX="11" PointY="3" />
+        <EntityTypeShape EntityType="DOANQLModel.HR" Width="1.5" PointX="2.875" PointY="0.75" />
+        <EntityTypeShape EntityType="DOANQLModel.BOOK" Width="1.5" PointX="5.25" PointY="0.875" />
+        <EntityTypeShape EntityType="DOANQLModel.JOB" Width="1.5" PointX="7.625" PointY="0.75" />
+        <AssociationConnector Association="DOANQLModel.fk_JOBS_USER" />
+        <AssociationConnector Association="DOANQLModel.fk_JOBS_HRS" />
+        <AssociationConnector Association="DOANQLModel.fk_BOOKS_HRS" />
+        <EntityTypeShape EntityType="DOANQLModel.ADMIN" Width="1.5" PointX="9" PointY="5.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

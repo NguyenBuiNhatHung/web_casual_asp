@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "InfoHr";
+    Layout = "~/Views/Shared/_layoutHR.cshtml";
+}
+
+@model DoAn_63134144.Models.HR
+
+<style>
+    .link-black {
+        color: black;
+    }
+
+        .link-black:hover {
+            color: blue;
+        }
+</style>
+<h2>Thông tin Khách Sạn</h2>
+@ViewBag.Message
+<div class="table-info-user">
+    <div class="user-info">
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+                    <dt></dt>
+                    <dd><img src="~/images/@Model.images" class="card-md-img w-100" alt="Hotel Image"></dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+                    <dt>Họ tên</dt>
+                    <dd>@Html.DisplayFor(model => model.Ho) @Html.DisplayFor(model => model.TenLot) @Html.DisplayFor(model => model.Ten)</dd>
+
+                    <dt>Số điện thoại</dt>
+                    <dd>@Html.DisplayFor(model => model.Sdt)</dd>
+
+                    <dt>Tên nơi làm việc</dt>
+                    <dd>@Html.DisplayFor(model => model.Ten_KS)</dd>
+
+                    <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+                    <dd>@Html.DisplayFor(model => model.Email)</dd>
+
+                    <dt>Địa chỉ</dt>
+                    <dd>@Html.DisplayFor(model => model.Diachi)</dd>
+
+                    <dt>Số sao</dt>
+                    <dd>@Html.DisplayFor(model => model.Star) sao</dd>
+                    @Html.ActionLink("Thay đổi mật khẩu", "ChangePasswordWithPassword", new { }, new { @class = "link-black" })
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

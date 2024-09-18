@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "LichLamViec";
+    Layout = "~/Views/Shared/_layoutUser.cshtml";
+}
+
+@model IEnumerable<DoAn_63134144.Models.JOB>
+
+
+<style>
+    .link-black {
+        color: black;
+    }
+
+        .link-black:hover {
+            color: blue;
+            text-decoration: none;
+        }
+
+    .link {
+        float: right;
+    }
+</style>
+@TempData["ErrorChuyenCa"]
+<table class="table col-12">
+    <tr class="col-12">
+        <th class="col-1">
+            Ngày
+        </th>
+        <th class="col-1">
+            Nơi làm việc
+        </th>
+        <th class="col-1">
+            Thời gian
+        </th>
+        <th class="col-1">
+            Lương
+        </th>
+        <th class="col-1">
+            Hỗ trợ
+        </th>
+        <th class="col-2">
+            Người nhượng
+        </th>
+        <th class="col-2">
+            Note
+        </th>
+        <th class="col-1">
+            Nhận ca
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="col-12">
+            <td class="col-1">
+                @(((DateTime)item.Ngay).ToString("dd/MM"))
+            </td>
+
+            <td class="col-1">
+                @item.HR.Ten_KS
+            </td>
+            <td class="col-2">
+                @Html.DisplayFor(modelItem => item.Tstart)
+                @Html.DisplayFor(modelItem => item.Tend)
+            </td>
+            <td class="col-1">
+                @{
+                    string formattedPrice = (item.Price / 1000).ToString() + "k";
+                }
+                @formattedPrice
+            </td>
+            <td class="col-1">
+                @Html.DisplayFor(modelItem => item.Support)
+            </td>
+            <td class="col-2">
+                @item.USER.Ho @item.USER.Ten_lot @item.USER.Ten
+            </td>
+            <td class="col-2">
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+
+            <td class="col-1">
+                @Html.ActionLink("Nhận ca", "NhuongCa", new { id_job = item.Id_job }, new { @class = "link-black" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+

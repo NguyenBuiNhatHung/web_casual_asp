@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmLuong";
+    Layout = "~/Views/Shared/_layoutControl.cshtml";
+}
+
+@model IEnumerable<DoAn_63134144.Models.JOB>
+
+<style>
+    .link-black {
+        color: black;
+    }
+
+        .link-black:hover {
+            color: blue;
+        }
+
+    .table {
+        width: 100%;
+        table-layout: fixed;
+        border: 1px solid black;
+    }
+
+    @@media only screen and (max-width:767px) {
+        .table th,
+        .table td {
+            font-size: 10px;
+            border: 1px solid red;
+            padding: 0px;
+            text-align: center;
+        }
+    }
+
+    @@media only screen and (min-width:768px) {
+        .table th,
+        .table td {
+            border: 1px solid red;
+            padding: 0px;
+            text-align: center;
+        }
+    }
+</style>
+<table class="table">
+    <tr class="col-12">
+        <th class="col-1">Khách sạn</th>
+        <th class="col-1">Ngày</th>
+        <th class="col-1">Thời gian</th>
+        <th class="col-1">Lương</th>
+        <th class="col-1">Hỗ trợ</th>
+        <th class="col-3 col-md-2">Họ tên</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        string formattedPrice = (item.Price / 1000).ToString() + "k";
+        string formattedSupport = (item.Support / 1000).ToString() + "k";
+        <tr>
+            <td>@item.HR.Short_name</td>
+            <td>@(((DateTime)item.Ngay).ToString("dd/MM"))</td>
+            <td>@item.Tstart - @item.Tend</td>
+            <td>@formattedPrice</td>
+            <td>@formattedSupport</td>
+            <td>@item.USER.Ho @item.USER.Ten_lot @item.USER.Ten</td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<DoAn_63134144.Models.JOB>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+<style>
+    .link-black {
+        color: black;
+    }
+
+        .link-black:hover {
+            color: blue;
+        }
+</style>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_hr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ngay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tstart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tend)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Support)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_change)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status_change)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_hr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ngay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tstart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tend)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Support)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_change)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status_change)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id_job }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id_job }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id_job }, new { @class = "link-black" })
+        </td>
+    </tr>
+}
+
+</table>

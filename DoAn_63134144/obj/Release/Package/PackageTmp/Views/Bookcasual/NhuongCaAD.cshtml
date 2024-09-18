@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "LichLamViec";
+    Layout = "~/Views/Shared/_layoutControl.cshtml";
+}
+
+@model IEnumerable<DoAn_63134144.Models.JOB>
+
+
+<style>
+    .link-black {
+        color: black;
+    }
+
+        .link-black:hover {
+            color: blue;
+            text-decoration: none;
+        }
+
+    .link {
+        float: right;
+    }
+
+    .table {
+        width: 100%;
+        table-layout: fixed;
+        border: 1px solid black;
+    }
+
+    @@media only screen and (max-width:767px) {
+        .table th,
+        .table td {
+            font-size: 10px;
+            border: 1px solid red;
+            padding: 0px;
+            text-align: center;
+        }
+    }
+
+    @@media only screen and (min-width:768px) {
+        .table th,
+        .table td {
+            border: 1px solid red;
+            padding: 0px;
+            text-align: center;
+        }
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <td class="col-1">Ngày</td>
+        <td class="col-2">Nơi làm việc</td>
+        <td class="col-1">thời gian</td>
+        <td class="col-1">Lương (/h)</td>
+        <td class="col-1">Hỗ trợ</td>
+        <td class="col-2">Người nhượng</td>
+        <td class="col-1">Vị trí</td>
+        <td class="col-2">Lưu ý</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        string formattedPrice = (item.Price / 1000).ToString() + "k";
+        string formattedSupport = (item.Support / 1000).ToString() + "k";
+        string name = item.USER.Ho + " " + item.USER.Ten_lot + " " + item.USER.Ten;
+        <tr>
+            <td>@(((DateTime)item.Ngay).ToString("dd/MM"))</td>
+            <td>@item.HR.Short_name</td>
+            <td>thời gian</td>
+            <td>@formattedPrice</td>
+            <td>@formattedSupport</td>
+            <td>@name</td>
+            <td>@item.Location</td>
+            <td>@item.Note</td>
+        </tr>
+    }
+</table>
+
+

@@ -1,0 +1,118 @@
+﻿@model IEnumerable<DoAn_63134144.Models.USER>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_layoutControl.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ten_lot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sdt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dia_chi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ngsinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Luong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kind)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gtinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Point)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bank)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ten_lot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sdt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dia_chi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ngsinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Luong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kind)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gtinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Point)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasswordHash)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bank)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_user }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_user }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_user })
+        </td>
+    </tr>
+}
+
+</table>

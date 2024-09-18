@@ -1,0 +1,39 @@
+@media only screen and (max-width:767px)  {
+    .row-home{
+        margin: auto;
+        height: 140px;
+        border: 2px solid red;
+        border-radius: 15px;
+        padding: 5px;
+        background-color: black;
+    }
+    .short-name{
+        color: white;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    .star{
+        color: yellow;
+        font-size: 1rem;
+    }
+}
+@media only screen and (min-width:768px) {
+    .row-home{
+        margin: auto;
+        height: 250px;
+        border: 2px solid red;
+        border-radius: 15px;
+        padding: 10px;
+        background-color: black;
+    }
+    .short-name{
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+    .star{
+        color: yellow;
+        font-size: 1.5rem;
+    }
+}
+

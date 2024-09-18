@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "InfoUser";
+    Layout = "~/Views/Shared/_layoutUser.cshtml";
+}
+
+@model DoAn_63134144.Models.USER
+
+<style>
+    .link-black {
+        color: black;
+    }
+
+        .link-black:hover {
+            color: blue;
+        }
+</style>
+<h2>Thông tin User</h2>
+@ViewBag.Message
+<div class="table-info-user">
+    <div class="user-info">
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+                    <dt>ID người sử dụng</dt>
+                    <dd>@Html.DisplayFor(model => model.Id_user)</dd>
+
+                    <dt>Họ tên</dt>
+                    <dd>@Html.DisplayFor(model => model.Ho) @Html.DisplayFor(model => model.Ten_lot) @Html.DisplayFor(model => model.Ten)</dd>
+
+                    <dt>Số điện thoại</dt>
+                    <dd>@Html.DisplayFor(model => model.Sdt)</dd>
+
+                    <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+                    <dd>@Html.DisplayFor(model => model.Email)</dd>
+
+
+                    <dt>Địa chỉ</dt>
+                    <dd>@Html.DisplayFor(model => model.Dia_chi)</dd>
+
+                    <dt>Ngày sinh</dt>
+                    <dd>@(((DateTime)Model.Ngsinh).ToString("dd/MM/yyyy"))</dd>
+
+                    <dt>Giới tính</dt>
+                    <dd>
+                        @if (Model.Gtinh == "0")
+                        {
+                            @Html.Raw("Nam")
+                        }
+                        else if (Model.Gtinh == "1")
+                        {
+                            @Html.Raw("Nữ")
+                        }
+                    </dd>
+                    <dt>Ngân hàng</dt>
+                    <dd>@Model.Bank</dd>
+
+                    <dt>Số tài khoản</dt>
+                    <dd>@Model.Stk</dd>
+                    @Html.ActionLink("Thay đổi tài khoản ngân hàng", "ChangeBank", new { }, new { @class = "link-black" })
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+
+                    <dt>@Html.DisplayNameFor(model => model.Point)</dt>
+                    <dd>@Html.DisplayFor(model => model.Point) Điểm</dd>
+
+                    <dt>Số lần tự hủy ca</dt>
+                    <dd>@Html.DisplayFor(model => model.Bad) Lần</dd>
+
+                    @Html.ActionLink("Thay đổi mật khẩu", "ChangePasswordWithPassword", new { }, new { @class = "link-black" })
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*new { id = Model.Id_user } ,*@

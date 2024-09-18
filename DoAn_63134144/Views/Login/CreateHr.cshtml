@@ -1,0 +1,130 @@
+﻿@model DoAn_63134144.Models.HR
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_layoutControl.cshtml";
+}
+
+@using (Html.BeginForm("ConfirmCreateHr", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Thông tin HR</h4>
+                        <hr />
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Ho, "Họ", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="Ho" name="Ho" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.Ho, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.TenLot, "Tên lót", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="TenLot" name="TenLot" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.TenLot, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Ten, "Tên", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="Ten" name="Ten" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Ten_KS, "Nơi làm việc", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="Ten_KS" name="Ten_KS" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.Ten_KS, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Diachi, "Địa chỉ", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="Diachi" name="Diachi" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Sdt, "Số điện thoại", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="text" id="Sdt" name="Sdt" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.Sdt, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Email, "Email hoặc Gmail", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="email" id="Email" name="Email" class="form-control" required oninput="checkFields()" />
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Star, "Số sao", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <select id="Star" name="Star" class="form-control" required oninput="checkFields()">
+                                    <option value="">Chọn số sao</option>
+                                    <option value="1">1 sao</option>
+                                    <option value="2">2 sao</option>
+                                    <option value="3">3 sao</option>
+                                    <option value="4">4 sao</option>
+                                    <option value="5">5 sao</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Star, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.images, "file ảnh", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                            <div class="col-md-6">
+                                <input type="file" id="images" name="images" class="form-control-file" accept="image/*" />
+                                @Html.ValidationMessageFor(model => model.images, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 offset-md-4">
+                            <input type="submit" value="Create" class="btn btn-primary" disabled />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    function checkFields() {
+        var inputs = document.querySelectorAll('.form-control[required]');
+        var isAllFilled = true;
+
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].value === '') {
+                isAllFilled = false;
+                break;
+            }
+        }
+
+        var createButton = document.querySelector('.btn.btn-primary');
+        if (isAllFilled) {
+            createButton.disabled = false;
+        } else {
+            createButton.disabled = true;
+        }
+    }
+</script>

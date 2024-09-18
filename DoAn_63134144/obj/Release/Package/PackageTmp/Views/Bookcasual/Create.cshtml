@@ -1,0 +1,137 @@
+﻿@model DoAn_63134144.Models.BOOK
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_layoutHR.cshtml";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+<div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Thông tin book casual</h4>
+                    <hr />
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Id_hr, "Id_hr", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                        <div class="col-md-6">
+                            <input type="text" id="Id_hr" name="Id_hr" class="form-control" readonly value="@Session["Id"]" />
+                            @Html.ValidationMessageFor(model => model.Id_hr, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Ngay, "Ngày", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                        <div class="col-md-6">
+                            <input type="date" id="Ngay" name="Ngay" class="form-control" required oninput="checkFields()" />
+                            @Html.ValidationMessageFor(model => model.Ngay, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Tstart, "Thời gian bắt đầu", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                        <div class="col-md-6">
+                            <input type="time" id="Tstart" name="Tstart" class="form-control" required oninput="checkFields()" />
+                            @Html.ValidationMessageFor(model => model.Tstart, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Tend, "Thời gian kết thúc", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                        <div class="col-md-6">
+                            <input type="time" id="Tend" name="Tend" class="form-control" required oninput="checkFields()" />
+                            @Html.ValidationMessageFor(model => model.Tend, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group row">
+            @Html.LabelFor(model => model.Price, "Lương", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+            <div class="col-md-6">
+                <input type="text" id="Price" name="Price" class="form-control" required oninput="checkLuong()" />
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Price, "Lương", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                        <div class="col-md-6">
+                            <input type="number" id="Price" name="Price" class="form-control" required oninput="checkFields()" step="1000" />
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Support, "Hỗ trợ thêm", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                        <div class="col-md-6">
+                            <input type="number" id="Support" name="Support" class="form-control" required oninput="checkFields()" step="1000" />
+                            @Html.ValidationMessageFor(model => model.Support, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Location, "Vị trí làm việc", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                        <div class="col-md-6">
+                            <select id="Location" name="Location" class="form-control" required onchange="checkFields()">
+                                <option value="">-- Chọn vị trí --</option>
+                                <option value="FB">FB</option>
+                                <option value="KIT">KIT</option>
+                                <option value="HK">HK</option>
+                                <option value="RUNNER">RUNNER</option>
+                                <option value="HAUCAN">HẬU CẦN</option>
+                                <option value="SETUP">SET UP</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Note, "Ghi chú", htmlAttributes: new { @class = "col-md-4 col-form-label text-md-right" })
+                        <div class="col-md-6">
+                            <textarea id="Note" name="Note" class="form-control" style="height: 200px;"></textarea>
+                            @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Các trường dữ liệu khác -->
+
+
+
+                    <div class="form-group row">
+                        <div class="col-md-6 offset-md-4">
+                            <input type="submit" value="Tuyển công nhật" class="btn btn-primary" disabled />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+}
+<script>
+    function checkFields() {
+        var inputs = document.querySelectorAll('.form-control[required]');
+        var isAllFilled = true;
+
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].value === '') {
+                isAllFilled = false;
+                break;
+            }
+        }
+
+        var createButton = document.querySelector('.btn.btn-primary');
+        if (isAllFilled) {
+            createButton.disabled = false;
+        } else {
+            createButton.disabled = true;
+        }
+    }
+
+    
+
+</script>

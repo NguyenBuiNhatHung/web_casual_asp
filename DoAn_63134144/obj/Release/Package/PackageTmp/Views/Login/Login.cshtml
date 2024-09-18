@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+<style>
+    .link-sign-up{
+        color:white;
+        border:1px solid blue;
+        width:100%;
+        background-color:rgb(64 137 246);
+        padding:1%;
+        border-radius:7px;
+    }
+    .link-sign-up:hover{
+        text-decoration:none;
+        color:white;
+        background-color:blue;
+    }
+</style>
+@ViewBag.test
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center mt-5">Đăng nhập</h2>
+        <form>
+            <div class="form-group">
+                <label for="phone">Số điện thoại:</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+        </form>
+    </div>
+</div>
+<center style="margin-top:2%;"><a class="link-sign-up"  href="~/Login/Register">Đăng ký tài khoản</a></center>
+
+

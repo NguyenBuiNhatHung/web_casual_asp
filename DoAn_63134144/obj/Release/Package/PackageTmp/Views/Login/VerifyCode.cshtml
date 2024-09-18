@@ -1,0 +1,26 @@
+﻿@model DoAn_63134144.Controllers.VerifyCodeViewModel
+@{
+    ViewBag.Title = "VerifyCode";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+
+
+<h2>Xác nhận mã</h2>
+
+@using (Html.BeginForm("VerifyCode", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Code)
+        @Html.TextBoxFor(model => model.Code, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Code)
+    </div>
+
+    <input type="submit" value="Xác nhận" class="btn btn-primary" />
+}
