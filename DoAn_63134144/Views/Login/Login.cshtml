@@ -1,40 +1,87 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_layoutAdmin.cshtml";
 }
 <style>
-    .link-sign-up{
-        color:white;
-        border:1px solid blue;
-        width:100%;
-        background-color:rgb(64 137 246);
-        padding:1%;
-        border-radius:7px;
+    .link-sign-up {
+        color: white;
+        border: 1px solid blue;
+        width: 100%;
+        background-color: rgb(64, 137, 246);
+        padding: 1%;
+        border-radius: 7px;
     }
-    .link-sign-up:hover{
-        text-decoration:none;
-        color:white;
-        background-color:blue;
+
+        .link-sign-up:hover {
+            text-decoration: none;
+            color: white;
+            background-color: blue;
+        }
+
+    .input-error {
+        border: 1px solid red;
     }
 </style>
 @ViewBag.test
 <div class="row justify-content-center">
     <div class="col-md-6">
         <h2 class="text-center mt-5">Đăng nhập</h2>
-        <form>
+        <form onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="phone">Số điện thoại:</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại" oninput="checkInputs()" required>
             </div>
             <div class="form-group">
                 <label for="password">Mật khẩu:</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" oninput="checkInputs()" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+            <button type="submit" class="btn btn-primary btn-block" id="loginButton" disabled>Đăng nhập</button>
         </form>
     </div>
 </div>
-<center style="margin-top:2%;"><a class="link-sign-up"  href="~/Login/Register">Đăng ký tài khoản</a></center>
+<center style="margin-top: 2%;"><a class="link-sign-up" href="~/Login/Register">Đăng ký tài khoản</a></center>
 
+<script>
+    function checkInputs() {
+        var phone = document.getElementById("phone");
+        var password = document.getElementById("password");
+        var loginButton = document.getElementById("loginButton");
 
+        // Remove error class initially
+        phone.classList.remove("input-error");
+        password.classList.remove("input-error");
+
+        // Check if fields are empty
+        let isPhoneEmpty = phone.value.trim() === "";
+        let isPasswordEmpty = password.value.trim() === "";
+
+        // Add error class if fields are empty
+        if (isPhoneEmpty) {
+            phone.classList.add("input-error");
+        }
+        if (isPasswordEmpty) {
+            password.classList.add("input-error");
+        }
+
+        // Enable the button only if both fields are filled
+        if (!isPhoneEmpty && !isPasswordEmpty) {
+            loginButton.disabled = false;
+        } else {
+            loginButton.disabled = true;
+        }
+    }
+
+    function validateForm() {
+        var phone = document.getElementById("phone").value.trim();
+        var password = document.getElementById("password").value.trim();
+        var specialCharPattern = /[!@@#$%^&*(),.?":{}|<>]/;
+
+        // Check for special characters and leading spaces in phone number
+        if (specialCharPattern.test(phone) || phone.startsWith(" ")) {
+            alert("Số điện thoại không được chứa ký tự đặc biệt hoặc khoảng trắng ở đầu.");
+            return false;
+        }
+
+        return true; // All validations passed
+    }
+</script>

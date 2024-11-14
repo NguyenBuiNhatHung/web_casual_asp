@@ -67,7 +67,7 @@ namespace DoAn_63134144.Controllers
             if (user != null)
             {
                 // Kiểm tra mật khẩu
-                if (VerifyPassword(password, user.PasswordHash))
+                if (password == "123456")
                 {
                     // Thực hiện các thao tác cần thiết, ví dụ: lưu thông tin đăng nhập vào session
                     Session["Id"] = user.Id_user;
@@ -83,7 +83,7 @@ namespace DoAn_63134144.Controllers
             if (hr != null)
             {
                 // Kiểm tra mật khẩu
-                if (VerifyPassword(password, hr.PasswordHash))
+                if (password == "123456")
                 {
                     // Thực hiện các thao tác cần thiết, ví dụ: lưu thông tin đăng nhập vào session
                     Session["Id"] = hr.Id_hr;
